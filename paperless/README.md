@@ -59,12 +59,18 @@ Now we need to make some changes here as we are using Container Manager which ha
 - You can remove the "docker.io/library/" part unders broker:image and db: image as container manager knows where to look.
 
 Under the volumes: blocks add the path to your own created folders within your paperlessngx folder so they will read as follows
-	/path/to/file/:/data
-	/path/to/file/:/var/lib/postgresql/data
-      	/path/to/file/:/usr/src/paperless/data
-      	/path/to/file/:/usr/src/paperless/media
-      	/path/to/file/:/usr/src/paperless/export
-      	/path/to/file/:/usr/src/paperless/consume
+	
+ /path/to/file/:/data
+	
+ /path/to/file/:/var/lib/postgresql/data
+      	
+/path/to/file/:/usr/src/paperless/data
+
+/path/to/file/:/usr/src/paperless/media
+
+/path/to/file/:/usr/src/paperless/export
+
+/path/to/file/:/usr/src/paperless/consume
 
 
 This is simply mapping your synology folders to the docker path so the container knows where to store files. This is useful to know when making future containers as most will require some folders mapping as per their documentation.PLEASE NOTE: your volume will likely be \volume1\.
