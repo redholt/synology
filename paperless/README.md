@@ -58,7 +58,7 @@ Now we need to make some changes here as we are using Container Manager which ha
 
 - You can remove the "docker.io/library/" part unders broker:image and db: image as container manager knows where to look.
 
-- Under the volumes: blocks add the path to your own created folders within your paperlessngx folder so they will read as follows
+Under the volumes: blocks add the path to your own created folders within your paperlessngx folder so they will read as follows
 	/path/to/file/:/data
 	/path/to/file/:/var/lib/postgresql/data
       	/path/to/file/:/usr/src/paperless/data
