@@ -9,12 +9,13 @@ What is it?
 
 Document storage for all your files that you cannot keep track of. Has OCR for enhanced search. Installing in docker on our synology.
 
-Plan:
+## Plan:
+
 Install Paperlessngx with a Postgres DB backed through container manager on the synology. Make sure you have container manager installed on your synology device, this is esentially docker for synology devices. If you are using Portainer then have a goosey here https://mariushosting.com/how-to-install-paperless-ngx-on-your-synology-nas/
 
 This guide assumes you have some knowledge of compose and .yaml, particularly around formatting and structure. Luckily, the Container Manager package we are using is quite good at flagging formatting errors so it should help you along if you get stuck.
 
-Links:
+## Links:
 
 Paperless Install Links:
 https://docs.paperless-ngx.com/setup/#docker_script
@@ -23,7 +24,7 @@ Dockerhub:
 https://registry.hub.docker.com/r/paperlessngx/paperless-ngx/
 
 
-Setting up:
+## Setting up:
 
 https://drfrankenstein.co.uk/category/initial-setup-7-2/ - I am using Dr Frankensteins setup here which give a great base to work from. You will need to follow this to setup your synology environment and get your UID and GID which are needed later. 
 
