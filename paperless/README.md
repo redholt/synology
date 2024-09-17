@@ -5,6 +5,53 @@ Paperlessngx and Docs can be found here https://hub.docker.com/r/linuxserver/pap
 ## Usage
 
 
+What is it?
+
+Document storage for all your files that you cannot keep track of. Has OCR for enhanced search. Installing in docker on our synology.
+
+Plan:
+Install Paperlessngx with a Postgres DB backed through container manager on the synology. Make sure you have container manager installed on your synology device, this is esentially docker for synology devices. If you are using Portainer then have a goosey here https://mariushosting.com/how-to-install-paperless-ngx-on-your-synology-nas/
+
+This guide assumes you have some knowledge of compose and .yaml, particularly around formatting and structure. Luckily, the Container Manager package we are using is quite good at flagging formatting errors so it should help you along if you get stuck.
+
+Links:
+
+Paperless Install Links:
+https://docs.paperless-ngx.com/setup/#docker_script
+
+Dockerhub:
+https://registry.hub.docker.com/r/paperlessngx/paperless-ngx/
+
+
+Setting up:
+
+https://drfrankenstein.co.uk/category/initial-setup-7-2/ - I am using Dr Frankensteins setup here which give a great base to work from. You will need to follow this to setup your synology environment and get your UID and GID which are needed later. 
+
+Dr Frankenstein is a great resource so please tip him if you find his site useful and join the Discord! Moving on...
+
+The paperless installation instructions point us here https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose telling us to pick a compose file which we need to use to get use to build the containers with. 
+
+We are going to setup our paperless instance in a project file within container manager so it is easy to rebuild if needed. Firstly we need to setup some files on our synology that we will later map to in the docker file.
+
+Looking here https://github.com/paperless-ngx/paperless-ngx/blob/main/docker/compose/docker-compose.postgres-tika.yml we can see we need some volumes creating for the container which are:
+
+data:
+media:
+db:
+redis:
+export:
+consume:
+
+I would create a paperlessngx parent folder with the above files living within that so paperlessngx/data etc. 
+
+We are using the tika build as this allows importing of emails and office docs and I am sure I will want to use these (.doc / .docx etc) in the future so better to be prepared now than migrate later!
+
+Once the folders are setup, head to container manager and start a new project. Call it whatever you want and select the path to the folder we have created earlier (/docker/paperlessngx in my case), and select Create file in the dropdown which will give us an area to enter some text. 
+
+Head to the paperless site for the tika file with postgres here https://github.com/paperless-ngx/paperless-ngx/blob/main/docker/compose/docker-compose.postgres-tika.yml and copy the text from here to your project on the synology. 
+
+At this point you can continue with next just be sure to untick the "build project on finsih" option as it will not work. This will give us access to a bigger editor in the paperlessngx/YAML Configurations tab once done making our revisions easier.
+
 Now we need to make some changes here as we are using Container Manager which has some differences to Portainer or general CLI docker functions.
 
 
