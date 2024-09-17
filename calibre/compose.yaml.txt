@@ -1,0 +1,53 @@
+services:
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:latest
+    container_name: calibre-web
+    environment:
+      - PUID=
+      - PGID=
+      - TZ=Europe/London
+      - DOCKER_MODS=linuxserver/mods:universal-calibre #optional
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
+    volumes:
+      - /path/to/config:/config
+      - /path/to/config:/data/media/books
+    ports:
+      - 8083:8083
+    network_mode: select_Network
+    restart: unless-stopped
+
+  calibre:
+    image: lscr.io/linuxserver/calibre:latest
+    container_name: calibre
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=
+      - PGID=
+      - TZ=Europe/London
+      - PASSWORD= #optional
+      - CLI_ARGS= #optional
+    volumes:
+      - /path/to/config:/config
+      - /path/to/config:/data/media/books
+    ports:
+      - 8280:8080 #Calibre desktop gui.
+      - 8281:8081 #Calibre webserver gui.
+    network_mode: select_Network
+    restart: unless-stopped
+
+  linuxserver-readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=
+      - PGID=
+      - TZ=Europe/London
+    volumes:
+      - /path/to/config:/config
+      - /path/to/config:/data
+      - /path/to/config:/downloads
+    ports:
+      - 8787:8787
+    network_mode: select_network
+    restart: unless-stopped

@@ -1,0 +1,11 @@
+services:    
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    volumes:
+      - /path/to/config:/opt/adguardhome/conf
+      - /path/to/config:/opt/adguardhome/work
+    network_mode: host
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
